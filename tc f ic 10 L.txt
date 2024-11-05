@@ -1,0 +1,34 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+int temp_var_count = 0;
+%}
+
+%%
+t[0-9]+ = [a-zA-Z][0-9]* [+] [a-zA-Z0-9]+ {
+    printf("LOAD %s, R%d\n", yytext+5, temp_var_count);
+    printf("ADD %s, R%d\n", yytext+9, temp_var_count);
+    printf("STORE R%d, %s\n", temp_var_count, yytext);
+    temp_var_count++;
+}
+
+t[0-9]+ = [a-zA-Z][0-9]* [-] [a-zA-Z0-9]+ {
+    printf("LOAD %s, R%d\n", yytext+5, temp_var_count);
+    printf("SUB %s, R%d\n", yytext+9, temp_var_count);
+    printf("STORE R%d, %s\n", temp_var_count, yytext);
+    temp_var_count++;
+}
+
+.|\n { /* Ignore other characters */ }
+%%
+
+int main() {
+    printf("Enter intermediate code (e.g., 't1 = a + b') to generate target code:\n");
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

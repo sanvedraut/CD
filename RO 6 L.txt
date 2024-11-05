@@ -1,0 +1,22 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+"=="   { printf("Equal to operator: %s\n", yytext); }
+"!="   { printf("Not equal to operator: %s\n", yytext); }
+"<="   { printf("Less than or equal to operator: %s\n", yytext); }
+">="   { printf("Greater than or equal to operator: %s\n", yytext); }
+"<"    { printf("Less than operator: %s\n", yytext); }
+">"    { printf("Greater than operator: %s\n", yytext); }
+.|\n   { /* Ignore other characters */ }
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

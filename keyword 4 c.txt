@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+// List of C keywords
+const char *keywords[] = {
+    "auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern",
+    "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short", "signed", 
+    "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", 
+    "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary", "_Noreturn", 
+    "_Static_assert", "_Thread_local"
+};
+
+// Function to check if a string is a C keyword
+int is_keyword(const char *str) {
+    int num_keywords = sizeof(keywords) / sizeof(keywords[0]);
+
+    for (int i = 0; i < num_keywords; i++) {
+        if (strcmp(str, keywords[i]) == 0) {
+            return 1;  // Match found
+        }
+    }
+    return 0;  // No match found
+}
+
+int main() {
+    char str[100];
+
+    // Prompt user for input
+    printf("Enter a word to check if it's a C keyword: ");
+    scanf("%s", str);
+
+    // Check if the input string is a keyword
+    if (is_keyword(str)) {
+        printf("\"%s\" is a C keyword.\n", str);
+    } else {
+        printf("\"%s\" is not a C keyword.\n", str);
+    }
+
+    return 0;
+}

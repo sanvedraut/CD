@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+void check_comments(const char *line) {
+    int i = 0;
+    int length = strlen(line);
+
+    // Check for single-line comment starting with "//"
+    while (i < length - 1) {
+        if (line[i] == '/' && line[i + 1] == '/') {
+            printf("Single-line comment found: %s", line + i);
+            return;
+        }
+        i++;
+    }
+
+    // Check for multi-line comment starting with "/*"
+    for (i = 0; i < length - 1; i++) {
+        if (line[i] == '/' && line[i + 1] == '*') {
+            printf("Multi-line comment start found: %s", line + i);
+            return;
+        }
+    }
+
+    // No comment found in this line
+    printf("No comment in this line.\n");
+}
+
+int main() {
+    FILE *file;
+    char line[256];
+
+    // Open the file containing C code
+    file = fopen("sample_code.c", "r");
+    if (file == NULL) {
+        printf("Error: Could not open file.\n");
+        return 1;
+    }
+
+    // Read each line and check for comments
+    while (fgets(line, sizeof(line), file)) {
+        check_comments(line);
+    }
+
+    fclose(file);
+    return 0;
+}

@@ -1,0 +1,15 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+"&&"   { printf("Logical AND operator found: %s\n", yytext); }
+"||"   { printf("Logical OR operator found: %s\n", yytext); }
+"!"    { printf("Logical NOT operator found: %s\n", yytext); }
+.|\n   { /* Ignore other characters */ }
+%%
+
+int main(int argc, char **argv) {
+    yylex();
+    return 0;
+}

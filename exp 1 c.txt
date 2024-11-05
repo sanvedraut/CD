@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch;
+    int lines = 0, characters = 0, words = 0, tabs = 0, numbers = 0, special_symbols = 0, spaces = 0;
+    int in_word = 0;
+
+    printf("Enter text (Press Ctrl+D to end input on Unix/Linux or Ctrl+Z on Windows):\n");
+
+    while ((ch = getchar()) != EOF) {
+        characters++; // Count every character
+
+        // Count new lines
+        if (ch == '\n') {
+            lines++;
+        }
+
+        // Count tabs
+        if (ch == '\t') {
+            tabs++;
+        }
+
+        // Count spaces
+        if (isspace(ch) && ch != '\n' && ch != '\t') {
+            spaces++;
+        }
+
+        // Count words
+        if (isalnum(ch)) {
+            if (!in_word) {
+                in_word = 1; // We are inside a word
+                words++;
+            }
+        } else {
+            in_word = 0; // We are not in a word anymore
+        }
+
+        // Count numbers and special symbols
+        if (isdigit(ch)) {
+            numbers++;
+        } else if (ispunct(ch)) {
+            special_symbols++;
+        }
+    }
+
+    // Adjust for the last line if input is not empty
+    if (characters > 0 && ch == '\n') {
+        lines++;
+    }
+
+    // Output the counts
+    printf("\nStatistics:\n");
+    printf("Lines: %d\n", lines);
+    printf("Characters: %d\n", characters);
+    printf("Words: %d\n", words);
+    printf("Tabs: %d\n", tabs);
+    printf("Spaces: %d\n", spaces);
+    printf("Numbers: %d\n", numbers);
+    printf("Special Symbols: %d\n", special_symbols);
+
+    return 0;
+}

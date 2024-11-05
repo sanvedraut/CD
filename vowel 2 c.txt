@@ -1,0 +1,28 @@
+exp 2
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];  // Array to hold the input string
+    char first_char;
+
+    // Prompt user for input
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Get the first character
+    first_char = str[0];
+
+    // Convert to lowercase for easy comparison
+    first_char = tolower(first_char);
+
+    // Check if the first character is a vowel
+    if (first_char == 'a' || first_char == 'e' || first_char == 'i' || first_char == 'o' || first_char == 'u') {
+        printf("The string starts with a vowel.\n");
+    } else {
+        printf("The string does not start with a vowel.\n");
+    }
+
+    return 0;
+}

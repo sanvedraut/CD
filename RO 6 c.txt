@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+void check_relational_operators(const char *line) {
+    int found = 0;
+
+    // Check for each relational operator in the line
+    if (strstr(line, "==") != NULL) {
+        printf("Relational operator '==' found.\n");
+        found = 1;
+    }
+    if (strstr(line, "!=") != NULL) {
+        printf("Relational operator '!=' found.\n");
+        found = 1;
+    }
+    if (strstr(line, ">=") != NULL) {
+        printf("Relational operator '>=' found.\n");
+        found = 1;
+    }
+    if (strstr(line, "<=") != NULL) {
+        printf("Relational operator '<=' found.\n");
+        found = 1;
+    }
+    // Check for single-character operators '>' and '<'
+    if (strstr(line, ">") != NULL && strstr(line, ">=") == NULL) {
+        printf("Relational operator '>' found.\n");
+        found = 1;
+    }
+    if (strstr(line, "<") != NULL && strstr(line, "<=") == NULL) {
+        printf("Relational operator '<' found.\n");
+        found = 1;
+    }
+
+    if (!found) {
+        printf("No relational operators found in this line.\n");
+    }
+}
+
+int main() {
+    char line[256];
+
+    // Prompt user for input
+    printf("Enter a line of C code to check for relational operators: ");
+    fgets(line, sizeof(line), stdin);
+
+    // Check the line for relational operators
+    check_relational_operators(line);
+
+    return 0;
+}

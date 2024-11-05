@@ -1,0 +1,24 @@
+%{
+#include <stdio.h>
+
+int num1, num2, result;
+%}
+
+%%
+[0-9]+[ \t]*[+][ \t]*[0-9]+ { 
+    sscanf(yytext, "%d+%d", &num1, &num2);  /* Handle inputs like '2+3' or '2 + 3' */
+    result = num1 + num2;
+    printf("Constant folding applied: %d\n", result); 
+}
+.|\n { /* Ignore other characters */ }
+%%
+
+int main() {
+    printf("Enter expressions (like '2 + 3' or '2+3') to apply constant folding (Ctrl+D to exit):\n");
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    double length = 10.0;
+    double width = 5.0;
+    double area, perimeter;
+
+    // Without optimization (repetitive calculations)
+    area = length * width;
+    perimeter = 2 * (length + width);
+    printf("Without Optimization:\n");
+    printf("Area: %.2f\n", area);
+    printf("Perimeter: %.2f\n", perimeter);
+
+    // With optimization (calculate once)
+    double sum = length + width;
+    area = length * width;             // Calculate area once
+    perimeter = 2 * sum;               // Use the previously calculated sum
+    printf("With Optimization:\n");
+    printf("Area: %.2f\n", area);
+    printf("Perimeter: %.2f\n", perimeter);
+
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+void check_logical_operators(const char *line) {
+    int found = 0;
+
+    // Check for logical AND operator "&&"
+    if (strstr(line, "&&") != NULL) {
+        printf("Logical operator '&&' found.\n");
+        found = 1;
+    }
+    
+    // Check for logical OR operator "||"
+    if (strstr(line, "||") != NULL) {
+        printf("Logical operator '||' found.\n");
+        found = 1;
+    }
+    
+    // Check for logical NOT operator "!"
+    if (strstr(line, "!") != NULL) {
+        printf("Logical operator '!' found.\n");
+        found = 1;
+    }
+
+    if (!found) {
+        printf("No logical operators found in this line.\n");
+    }
+}
+
+int main() {
+    char line[256];
+
+    // Prompt user for input
+    printf("Enter a line of C code to check for logical operators: ");
+    fgets(line, sizeof(line), stdin);
+
+    // Check the line for logical operators
+    check_logical_operators(line);
+
+    return 0;
+}

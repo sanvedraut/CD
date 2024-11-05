@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+void generate_code() {
+    // Target variable declarations
+    printf("double a, b, c, d, e;\n\n");
+
+    // Intermediate code representation
+    printf("// Intermediate Code\n");
+    printf("1: a = b + c;\n");
+    printf("2: d = a * 2;\n");
+    printf("3: e = d / 5;\n\n");
+
+    // Target code generation
+    printf("// Generated Target Code\n");
+    printf("a = b + c;\n");
+    printf("d = a * 2;\n");
+    printf("e = d / 5;\n");
+}
+
+int main() {
+    generate_code();
+    return 0;
+}
